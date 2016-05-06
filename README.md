@@ -19,13 +19,13 @@ Here the example of installation of the english dictionary:
 After the installation you can use english dictionary and configuration:
 
 ```sql
-=# SELECT ts_lexize('public.english_hunspell', 'stories');
+=> SELECT ts_lexize('public.english_hunspell', 'stories');
  ts_lexize
 -----------
  {story}
 (1 row)
 
-=# SELECT to_tsvector('public.english', 'stories');
+=> SELECT to_tsvector('public.english', 'stories');
  to_tsvector
 -------------
  'story':1
