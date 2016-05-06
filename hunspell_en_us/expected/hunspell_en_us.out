@@ -1,0 +1,61 @@
+CREATE EXTENSION hunspell_en_us;
+SELECT ts_lexize('english_hunspell', 'stories');
+ ts_lexize 
+-----------
+ {story}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'traveled');
+     ts_lexize     
+-------------------
+ {traveled,travel}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'eaten');
+  ts_lexize  
+-------------
+ {eaten,eat}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'I''m');
+ ts_lexize 
+-----------
+ {i'm}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'Saturdays');
+ ts_lexize  
+------------
+ {saturday}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'healthcare');
+  ts_lexize   
+--------------
+ {healthcare}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'generally');
+ ts_lexize 
+-----------
+ {general}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'integrating');
+  ts_lexize  
+-------------
+ {integrate}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'lankiness''s');
+  ts_lexize  
+-------------
+ {lankiness}
+(1 row)
+
+SELECT ts_lexize('english_hunspell', 'rewritten');
+ ts_lexize 
+-----------
+ {written}
+(1 row)
+

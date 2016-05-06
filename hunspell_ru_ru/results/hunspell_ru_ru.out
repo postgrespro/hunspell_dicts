@@ -1,0 +1,55 @@
+CREATE EXTENSION hunspell_ru_ru;
+SELECT ts_lexize('russian_hunspell', 'распространённости');
+      ts_lexize       
+----------------------
+ {распространённость}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'межнационального');
+     ts_lexize     
+-------------------
+ {межнациональный}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'включается');
+  ts_lexize   
+--------------
+ {включаться}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'значу');
+ ts_lexize 
+-----------
+ {значить}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'зевнув');
+ ts_lexize 
+-----------
+ {зевнуть}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'зевоты');
+ ts_lexize 
+-----------
+ {зевота}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'землей');
+ ts_lexize 
+-----------
+ {земля}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'волчатами');
+ ts_lexize  
+------------
+ {волчонок}
+(1 row)
+
+SELECT ts_lexize('russian_hunspell', 'мойтесь');
+ ts_lexize 
+-----------
+ {мыться}
+(1 row)
+
