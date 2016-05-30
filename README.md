@@ -19,13 +19,13 @@ Here the example of installation of the english dictionary:
 After the installation you can use english dictionary and configuration:
 
 ```sql
-=> SELECT ts_lexize('public.english_hunspell', 'stories');
+=> SELECT ts_lexize('english_hunspell', 'stories');
  ts_lexize
 -----------
  {story}
 (1 row)
 
-=> SELECT to_tsvector('public.english', 'stories');
+=> SELECT to_tsvector('english_hunspell', 'stories');
  to_tsvector
 -------------
  'story':1
@@ -36,11 +36,11 @@ After the installation you can use english dictionary and configuration:
 
 The modules introduce the following dictionaries and configurations:
 
-|     Module     |        Dictionary         |  Configuration
-| -------------- | ------------------------- | ----------------
-| hunspell_de_de | public.german_hunspell    | public.german
-| hunspell_en_us | public.english_hunspell   | public.english
-| hunspell_fr    | public.french_hunspell    | public.french
-| hunspell_nl_nl | public.dutch_hunspell     | public.dutch
-| hunspell_nn_no | public.norwegian_hunspell | public.norwegian
-| hunspell_ru_ru | public.russian_hunspell   | public.russian
+|     Module     |    Dictionary      |   Configuration
+| -------------- | ------------------ | ------------------
+| hunspell_de_de | german_hunspell    | german_hunspell
+| hunspell_en_us | english_hunspell   | english_hunspell
+| hunspell_fr    | french_hunspell    | french_hunspell
+| hunspell_nl_nl | dutch_hunspell     | dutch_hunspell
+| hunspell_nn_no | norwegian_hunspell | norwegian_hunspell
+| hunspell_ru_ru | russian_hunspell   | russian_hunspell

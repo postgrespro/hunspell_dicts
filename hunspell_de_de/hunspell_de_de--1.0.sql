@@ -3,22 +3,22 @@
 -- complain if script is sourced in psql, rather than via CREATE EXTENSION
 \echo Use "CREATE EXTENSION hunspell_de_de" to load this file. \quit
 
-CREATE TEXT SEARCH DICTIONARY public.german_hunspell (
+CREATE TEXT SEARCH DICTIONARY german_hunspell (
     TEMPLATE = ispell,
     DictFile = de_de,
     AffFile = de_de,
     StopWords = german
 );
 
-COMMENT ON TEXT SEARCH DICTIONARY public.german_hunspell IS 'hunspell dictionary for german language';
+COMMENT ON TEXT SEARCH DICTIONARY german_hunspell IS 'hunspell dictionary for german language';
 
-CREATE TEXT SEARCH CONFIGURATION public.german (
-    COPY = pg_catalog.simple
+CREATE TEXT SEARCH CONFIGURATION german_hunspell (
+    COPY = simple
 );
 
-COMMENT ON TEXT SEARCH CONFIGURATION public.german IS 'hunspell configuration for german language';
+COMMENT ON TEXT SEARCH CONFIGURATION german_hunspell IS 'hunspell configuration for german language';
 
-ALTER TEXT SEARCH CONFIGURATION public.german
+ALTER TEXT SEARCH CONFIGURATION german_hunspell
     ALTER MAPPING FOR asciiword, asciihword, hword_asciipart,
         word, hword, hword_part
-    WITH public.german_hunspell, pg_catalog.german_stem;
+    WITH german_hunspell, german_stem;
