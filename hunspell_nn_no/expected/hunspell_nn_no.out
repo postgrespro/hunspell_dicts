@@ -1,49 +1,65 @@
 CREATE EXTENSION hunspell_nn_no;
-SELECT ts_lexize('norwegian_hunspell', 'kjem');
-   ts_lexize   
----------------
- {kjem,kjemme}
+CREATE TABLE table1(name varchar);
+INSERT INTO table1 VALUES ('kjem'), ('heiter'), ('guten'),
+						('gutar'), ('kyrkjene'), ('fotballklubber'), ('klubbfotballen');
+SELECT d.* FROM table1 AS t, LATERAL ts_debug('norwegian_hunspell', t.name) AS d;
+   alias   |   description   |     token      |            dictionaries             |     dictionary     |                           lexemes                           
+-----------+-----------------+----------------+-------------------------------------+--------------------+-------------------------------------------------------------
+ asciiword | Word, all ASCII | kjem           | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {kjem,kjemme}
+ asciiword | Word, all ASCII | heiter         | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {heite,heit}
+ asciiword | Word, all ASCII | guten          | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {guten,gut}
+ asciiword | Word, all ASCII | gutar          | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {gut}
+ asciiword | Word, all ASCII | kyrkjene       | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {kyrkje}
+ asciiword | Word, all ASCII | fotballklubber | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {fotball,klubb,fot,ball,klubb}
+ asciiword | Word, all ASCII | klubbfotballen | {norwegian_hunspell,norwegian_stem} | norwegian_hunspell | {klubbfotball,klubb,fotball,klubb,fot,balle,klubb,fot,ball}
+(7 rows)
+
+CREATE INDEX name_idx ON table1 USING GIN (to_tsvector('norwegian_hunspell', "name"));
+SELECT * FROM table1 WHERE to_tsvector('norwegian_hunspell', name)
+	@@ to_tsquery('norwegian_hunspell', 'klubb');
+      name      
+----------------
+ fotballklubber
+ klubbfotballen
+(2 rows)
+
+SELECT * FROM table1 WHERE to_tsvector('norwegian_hunspell', name)
+	@@ to_tsquery('norwegian_hunspell', 'fot');
+      name      
+----------------
+ fotballklubber
+ klubbfotballen
+(2 rows)
+
+SELECT * FROM table1 WHERE to_tsvector('norwegian_hunspell', name)
+	@@ to_tsquery('norwegian_hunspell', 'heiter');
+  name  
+--------
+ heiter
 (1 row)
 
-SELECT ts_lexize('norwegian_hunspell', 'heiter');
-  ts_lexize   
---------------
- {heite,heit}
-(1 row)
+DROP INDEX name_idx;
+CREATE INDEX name_idx ON table1 USING GIST (to_tsvector('norwegian_hunspell', "name"));
+SELECT * FROM table1 WHERE to_tsvector('norwegian_hunspell', name)
+	@@ to_tsquery('norwegian_hunspell', 'klubb');
+      name      
+----------------
+ fotballklubber
+ klubbfotballen
+(2 rows)
 
-SELECT ts_lexize('norwegian_hunspell', 'guten');
-  ts_lexize  
--------------
- {guten,gut}
-(1 row)
+SELECT * FROM table1 WHERE to_tsvector('norwegian_hunspell', name)
+	@@ to_tsquery('norwegian_hunspell', 'fot');
+      name      
+----------------
+ fotballklubber
+ klubbfotballen
+(2 rows)
 
-SELECT ts_lexize('norwegian_hunspell', 'gutar');
- ts_lexize 
------------
- {gut}
-(1 row)
-
-SELECT ts_lexize('norwegian_hunspell', 'kyrkjene');
- ts_lexize 
------------
- {kyrkje}
-(1 row)
-
-SELECT ts_lexize('norwegian_hunspell', 'fotballklubber');
-           ts_lexize            
---------------------------------
- {fotball,klubb,fot,ball,klubb}
-(1 row)
-
-SELECT ts_lexize('norwegian_hunspell', 'klubbfotballen');
-                          ts_lexize                          
--------------------------------------------------------------
- {klubbfotball,klubb,fotball,klubb,fot,balle,klubb,fot,ball}
-(1 row)
-
-SELECT ts_lexize('norwegian_hunspell', 'stavekontroll');
-             ts_lexize             
------------------------------------
- {stave,kontroll,stave,kont,rolle}
+SELECT * FROM table1 WHERE to_tsvector('norwegian_hunspell', name)
+	@@ to_tsquery('norwegian_hunspell', 'heiter');
+  name  
+--------
+ heiter
 (1 row)
 

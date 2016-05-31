@@ -1,55 +1,59 @@
 CREATE EXTENSION hunspell_de_de;
-SELECT ts_lexize('german_hunspell', 'überwachung');
-  ts_lexize   
---------------
- {überwachen}
-(1 row)
+CREATE TABLE table1(name varchar);
+INSERT INTO table1 VALUES ('etikettierung'), ('vernehmen'), ('verteilen'),
+						('bereits'), ('wahrnehmung');
+SELECT d.* FROM table1 AS t, LATERAL ts_debug('german_hunspell', t.name) AS d;
+   alias   |   description   |     token     |         dictionaries          |   dictionary    |            lexemes            
+-----------+-----------------+---------------+-------------------------------+-----------------+-------------------------------
+ asciiword | Word, all ASCII | etikettierung | {german_hunspell,german_stem} | german_hunspell | {etikettieren}
+ asciiword | Word, all ASCII | vernehmen     | {german_hunspell,german_stem} | german_hunspell | {vernehmen,nehmen}
+ asciiword | Word, all ASCII | verteilen     | {german_hunspell,german_stem} | german_hunspell | {verteilen,teilen,teile,teil}
+ asciiword | Word, all ASCII | bereits       | {german_hunspell,german_stem} | german_hunspell | {bereit}
+ asciiword | Word, all ASCII | wahrnehmung   | {german_hunspell,german_stem} | german_hunspell | {wahrnehmen}
+(5 rows)
 
-SELECT ts_lexize('german_hunspell', 'etikettierung');
-   ts_lexize    
-----------------
- {etikettieren}
-(1 row)
-
-SELECT ts_lexize('german_hunspell', 'vernehmen');
-     ts_lexize      
---------------------
- {vernehmen,nehmen}
-(1 row)
-
-SELECT ts_lexize('german_hunspell', 'verteilen');
-           ts_lexize           
--------------------------------
- {verteilen,teilen,teile,teil}
-(1 row)
-
-SELECT ts_lexize('german_hunspell', 'bereits');
- ts_lexize 
+CREATE INDEX name_idx ON table1 USING GIN (to_tsvector('german_hunspell', "name"));
+SELECT * FROM table1 WHERE to_tsvector('german_hunspell', name)
+	@@ to_tsquery('german_hunspell', 'vernehmen');
+   name    
 -----------
- {bereit}
+ vernehmen
 (1 row)
 
-SELECT ts_lexize('german_hunspell', 'üblichen');
- ts_lexize 
+SELECT * FROM table1 WHERE to_tsvector('german_hunspell', name)
+	@@ to_tsquery('german_hunspell', 'bereits');
+  name   
+---------
+ bereits
+(1 row)
+
+SELECT * FROM table1 WHERE to_tsvector('german_hunspell', name)
+	@@ to_tsquery('german_hunspell', 'wahrnehmung');
+    name     
+-------------
+ wahrnehmung
+(1 row)
+
+DROP INDEX name_idx;
+CREATE INDEX name_idx ON table1 USING GIST (to_tsvector('german_hunspell', "name"));
+SELECT * FROM table1 WHERE to_tsvector('german_hunspell', name)
+	@@ to_tsquery('german_hunspell', 'vernehmen');
+   name    
 -----------
- {üblich}
+ vernehmen
 (1 row)
 
-SELECT ts_lexize('german_hunspell', 'wahrnehmung');
-  ts_lexize   
---------------
- {wahrnehmen}
+SELECT * FROM table1 WHERE to_tsvector('german_hunspell', name)
+	@@ to_tsquery('german_hunspell', 'bereits');
+  name   
+---------
+ bereits
 (1 row)
 
-SELECT ts_lexize('german_hunspell', 'maßen');
- ts_lexize 
------------
- {maß}
-(1 row)
-
-SELECT ts_lexize('german_hunspell', 'füße');
- ts_lexize 
------------
- {fuß}
+SELECT * FROM table1 WHERE to_tsvector('german_hunspell', name)
+	@@ to_tsquery('german_hunspell', 'wahrnehmung');
+    name     
+-------------
+ wahrnehmung
 (1 row)
 
