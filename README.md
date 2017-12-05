@@ -16,6 +16,8 @@ Here the example of installation of the english dictionary:
     $ make USE_PGXS=1 installcheck
     $ psql DB -c "CREATE EXTENSION hunspell_en_us;"
 
+> **Important:** Don't forget to set the `PG_CONFIG` variable in case you want to test dictionaries on a custom build of PostgreSQL. Read more [here](https://wiki.postgresql.org/wiki/Building_and_Installing_PostgreSQL_Extension_Modules).
+
 After the installation you can use english dictionary and configuration:
 
 ```sql
