@@ -1,0 +1,5 @@
+# hunspell_cs_cz extension
+comment = 'Czech Hunspell Dictionary'
+default_version = '1.0'
+module_pathname = '$libdir/hunspell_cs_cz'
+relocatable = true
