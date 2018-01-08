@@ -40,6 +40,7 @@ The modules introduce the following dictionaries and configurations:
 
 |     Module     |    Dictionary      |   Configuration
 | -------------- | ------------------ | ------------------
+| hunspell_cs_cz | czech_hunspell     | czech_hunspell
 | hunspell_de_de | german_hunspell    | german_hunspell
 | hunspell_en_us | english_hunspell   | english_hunspell
 | hunspell_fr    | french_hunspell    | french_hunspell
