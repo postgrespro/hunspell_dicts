@@ -44,6 +44,7 @@ The modules introduce the following dictionaries and configurations:
 | hunspell_de_de | german_hunspell    | german_hunspell
 | hunspell_en_us | english_hunspell   | english_hunspell
 | hunspell_fr    | french_hunspell    | french_hunspell
+| hunspell_ne_np | nepali_hunspell    | nepali_hunspell
 | hunspell_nl_nl | dutch_hunspell     | dutch_hunspell
 | hunspell_nn_no | norwegian_hunspell | norwegian_hunspell
 | hunspell_ru_ru | russian_hunspell   | russian_hunspell
