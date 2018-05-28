@@ -1,0 +1,5 @@
+# hunspell_ru_ru_aot extension
+comment = 'Russian Hunspell Dictionary (from AOT.ru group)'
+default_version = '1.0'
+module_pathname = '$libdir/hunspell_ru_ru_aot'
+relocatable = true

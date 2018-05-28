@@ -1,0 +1,70 @@
+CREATE EXTENSION hunspell_ru_ru_aot;
+CREATE TABLE table1(name varchar);
+INSERT INTO table1 VALUES ('земля'), ('землёй'), ('землями'), ('земли'),
+						('туши'), ('тушь'), ('туша'), ('тушат'),
+						('тушью');
+SELECT d.* FROM table1 AS t, LATERAL ts_debug('russian_aot_hunspell', t.name) AS d;
+ alias |    description    |  token  |            dictionaries             |      dictionary      |            lexemes             
+-------+-------------------+---------+-------------------------------------+----------------------+--------------------------------
+ word  | Word, all letters | земля   | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {земля}
+ word  | Word, all letters | землёй  | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {землёй}
+ word  | Word, all letters | землями | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {землями}
+ word  | Word, all letters | земли   | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {земли}
+ word  | Word, all letters | туши    | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {туши,туш,туша,тушь,туша,тушь}
+ word  | Word, all letters | тушь    | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {тушь}
+ word  | Word, all letters | туша    | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {туша,туш}
+ word  | Word, all letters | тушат   | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {тушат}
+ word  | Word, all letters | тушью   | {russian_aot_hunspell,russian_stem} | russian_aot_hunspell | {тушь}
+(9 rows)
+
+CREATE INDEX name_idx ON table1 USING GIN (to_tsvector('russian_aot_hunspell', "name"));
+SELECT * FROM table1 WHERE to_tsvector('russian_aot_hunspell', name)
+	@@ to_tsquery('russian_aot_hunspell', 'землёй');
+  name  
+--------
+ землёй
+(1 row)
+
+SELECT * FROM table1 WHERE to_tsvector('russian_aot_hunspell', name)
+	@@ to_tsquery('russian_aot_hunspell', 'тушь');
+ name  
+-------
+ туши
+ тушь
+ тушью
+(3 rows)
+
+SELECT * FROM table1 WHERE to_tsvector('russian_aot_hunspell', name)
+	@@ to_tsquery('russian_aot_hunspell', 'туша');
+ name 
+------
+ туши
+ туша
+(2 rows)
+
+DROP INDEX name_idx;
+CREATE INDEX name_idx ON table1 USING GIST (to_tsvector('russian_aot_hunspell', "name"));
+SELECT * FROM table1 WHERE to_tsvector('russian_aot_hunspell', name)
+	@@ to_tsquery('russian_aot_hunspell', 'землёй');
+  name  
+--------
+ землёй
+(1 row)
+
+SELECT * FROM table1 WHERE to_tsvector('russian_aot_hunspell', name)
+	@@ to_tsquery('russian_aot_hunspell', 'тушь');
+ name  
+-------
+ туши
+ тушь
+ тушью
+(3 rows)
+
+SELECT * FROM table1 WHERE to_tsvector('russian_aot_hunspell', name)
+	@@ to_tsquery('russian_aot_hunspell', 'туша');
+ name 
+------
+ туши
+ туша
+(2 rows)
+

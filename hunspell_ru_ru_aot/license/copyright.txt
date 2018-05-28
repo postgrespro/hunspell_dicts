@@ -1,0 +1,26 @@
+Russian Spellchecker dictionary "only yo"
+--------------------------------
+
+This Russian dictionary is  packaged in .oxt and converted
+to Hunspell format by Yakov Reztsov <yr@myooo.ru>  in 2010, 2011, 2014, 2015 from
+http://www.aot.ru  (http://sourceforge.net/projects/seman/)
+License: GNU LGPL
+Updated in 13.05.2018.
+
+Russian Hyphenation dictionary
+--------------------------------
+Language: Russian (ru RU)
+License:  GNU LGPL
+Author:   conversion author is Peter Novodvorsky <nidd@altlinux.ru>
+Origin:   Based on the TeX hyphenation tables 
+This hyphenation dictionary is based on syllable matching patterns and should be usable under other variations of Russian
+HYPH ru RU hyph_ru_RU
+
+Russian Thesaurus Dictionary
+--------------------------------
+Language: Russian (ru RU)
+License:  GNU LGPL
+Author:   http://aot.ru (http://sourceforge.net/projects/seman/)
+Origin:   Dicts/SrcBinDict/synonyms.txt
+Packager: Yakov Reztsov <yr@myooo.ru>, 2014
+
