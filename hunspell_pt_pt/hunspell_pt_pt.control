@@ -1,0 +1,5 @@
+# hunspell_pt_pt extension
+comment = 'Portuguese Hunspell Dictionary'
+default_version = '1.0'
+module_pathname = '$libdir/hunspell_pt_pt'
+relocatable = true

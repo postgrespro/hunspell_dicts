@@ -60,14 +60,15 @@ CREATE TEXT SEARCH DICTIONARY norwegian_hunspell (
 
 The modules introduce the following dictionaries and configurations:
 
-|       Module       |     Dictionary       |    Configuration
-| ------------------ | -------------------- | --------------------
-| hunspell_cs_cz     | czech_hunspell       | czech_hunspell
-| hunspell_de_de     | german_hunspell      | german_hunspell
-| hunspell_en_us     | english_hunspell     | english_hunspell
-| hunspell_fr        | french_hunspell      | french_hunspell
-| hunspell_ne_np     | nepali_hunspell      | nepali_hunspell
-| hunspell_nl_nl     | dutch_hunspell       | dutch_hunspell
-| hunspell_nn_no     | norwegian_hunspell   | norwegian_hunspell
-| hunspell_ru_ru     | russian_hunspell     | russian_hunspell
-| hunspell_ru_ru_aot | russian_aot_hunspell | russian_aot_hunspell
+| Module | Dictionary/Configuration |
+| ------ | ------------------------ |
+| [hunspell_cs_cz](huspell_cs_cz) | czech_hunspell |
+| [hunspell_de_de](hunspell_de_de) | german_hunspell |
+| [hunspell_en_us](hunspell_en_us) | english_hunspell |
+| [hunspell_fr](hunspell_fr) | french_hunspell |
+| [hunspell_ne_np](hunspell_ne_np) | nepali_hunspell |
+| [hunspell_nl_nl](hunspell_nl_nl) | dutch_hunspell |
+| [hunspell_nn_no](hunspell_nn_no) | norwegian_hunspell |
+| [hunspell_pt_pt](hunspell_pt_pt) | portuguese_hunspell |
+| [hunspell_ru_ru](hunspell_ru_ru) | russian_hunspell |
+| [hunspell_ru_ru_aot](hunspell_ru_ru_aot) | russian_aot_hunspell |
