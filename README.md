@@ -11,8 +11,7 @@ Here the example of installation of the english dictionary:
 
     $ git clone https://github.com/postgrespro/hunspell_dicts
     $ cd hunspell_dicts/hunspell_en_us
-    $ make USE_PGXS=1
-    $ sudo make USE_PGXS=1 install
+    $ make USE_PGXS=1 install
     $ make USE_PGXS=1 installcheck
     $ psql DB -c "CREATE EXTENSION hunspell_en_us;"
 
