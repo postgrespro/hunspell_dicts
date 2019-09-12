@@ -2,8 +2,7 @@
 
 ## Introduction
 
-The repository contains hunspell dictionaries for german, english, french,
-dutch, norwegian and russian languages.
+The repository contains hunspell dictionaries for several languages listed below.
 
 ## Installation
 
