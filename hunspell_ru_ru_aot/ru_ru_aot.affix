@@ -5,7 +5,7 @@ FLAG num
 # to Hunspell format by Yakov Reztsov in 2011 from
 # http://sourceforge.net/projects/seman/  (http://www.aot.ru) 
 # License: LGPL v2.1.
-# Verion: 0.4.2 (updated 13.05.2018)
+# Verion: 0.4.3 (updated 27.06.2018)
 
 TRY оаеиёнстрлвпуяыюэкмдьзбгшчйжхщцфъ
 KEY йцукенгшщзхъфывапролджэячсмитьбю|её
@@ -32,13 +32,13 @@ REP 10
 REP е ё
 REP ё e
 REP тс ц
-REP ц тс	
+REP ц тс
 REP н нн
 REP нн н
-REP л лл	
-REP лл л	
+REP л лл
+REP лл л
 REP тся ться
-REP ться тся	
+REP ться тся
 
 PFX 9 Y 49
 PFX 9 0 псевдо .
