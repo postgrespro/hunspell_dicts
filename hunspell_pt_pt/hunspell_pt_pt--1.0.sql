@@ -7,7 +7,7 @@ CREATE TEXT SEARCH DICTIONARY portuguese_hunspell (
     TEMPLATE = ispell,
     DictFile = pt_pt,
     AffFile = pt_pt,
-    StopWords = portuguese
+    StopWords = pt_pt
 );
 
 COMMENT ON TEXT SEARCH DICTIONARY portuguese_hunspell IS 'hunspell dictionary for portuguese language';

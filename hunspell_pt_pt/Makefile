@@ -1,7 +1,7 @@
 EXTENSION = hunspell_pt_pt
 DATA = hunspell_pt_pt--1.0.sql
 
-DATA_TSEARCH = pt_pt.affix pt_pt.dict portuguese.stop
+DATA_TSEARCH = pt_pt.affix pt_pt.dict pt_pt.stop
 
 ifdef USE_PGXS
 PG_CONFIG = pg_config
